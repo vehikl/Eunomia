@@ -1,0 +1,22 @@
+{
+  "name": "eunomia-front",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vue/test-utils": "^2.3.2",
+    "happy-dom": "^8.9.0",
+    "vite": "^4.2.0",
+    "vitest": "^0.29.7"
+  }
+}

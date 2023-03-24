@@ -1,7 +1,3 @@
-<script setup>
-import VotingOptionsList from './components/VotingOptionsList.vue';
-</script>
-
 <template>
   <div>
     <h1>EUNOMIA</h1>
@@ -9,3 +5,6 @@ import VotingOptionsList from './components/VotingOptionsList.vue';
   </div>
 </template>
 
+<script setup>
+import VotingOptionsList from './components/VotingOptionsList.vue';
+</script>

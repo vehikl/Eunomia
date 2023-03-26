@@ -3,7 +3,7 @@
     <button id="votingToggleButton" @click="toggleIsVotingEnabled">{{ this.votingButtonVerb }} the voting!</button>
     <div>
       <input id="textInput" v-model="option" placeholder="give thing for ballot"/>
-      <button id="button" @click="buttonClick">Button</button>
+      <button id="button" @click="addItemToVotingOptions">Button</button>
     </div>
     <div id="options" v-for="option of votingOptions">
       <VotingOption
@@ -30,8 +30,8 @@ export default {
     }
   },
   methods: {
-    buttonClick() {
-      if (this.option.length > 0 && this.option.length < 32) {
+    addItemToVotingOptions() {
+      if (this.isValidOption()) {
         this.votingOptions.push(this.option)
         this.option = ''
       }
@@ -42,6 +42,21 @@ export default {
       if (this.votingOptions.length > 0) {
         this.isVotingEnabled = !this.isVotingEnabled
       }
+    },
+    isValidOption() {
+      if (this.option.length === 0) {
+        return false
+      }
+
+      if (this.option.length > 32) {
+        return false
+      }
+
+      if (this.votingOptions.includes(this.option)) {
+        return false
+      }
+
+      return true
     }
   },
   computed: {

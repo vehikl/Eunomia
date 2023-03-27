@@ -27,4 +27,10 @@ Simple backend necessary to store the voting results long term.
 
 For updates on the voting state itself, we'll likely need to use some sort of
 socket connection to update the voting options, results, and phase on each of
-the users' machines. Looking into the mobtime implementation will help with this
+the users' machines. Looking into the mobtime implementation will help with this.
+
+Look into:
+
+[laravel-websockets](https://freek.dev/1228-introducing-laravel-websockets-an-easy-to-use-websocket-server-implemented-in-php)
+
+[laravel-echo](https://www.npmjs.com/package/laravel-echo)

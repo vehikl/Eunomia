@@ -11,6 +11,7 @@
           :enabled="isVotingEnabled"
       />
     </div>
+    <button @click="connect">Hey hi hello</button>
   </div>
 </template>
 
@@ -24,9 +25,20 @@ export default {
   },
   data() {
     return {
+      pusher: null,
+      app: null,
+      logChannel: null,
+      authEndpoint: null,
+      host: '127.0.0.1',
+      port: 6001,
       option: '',
       votingOptions: [],
       isVotingEnabled: false,
+      connected: false,
+      votingPayload: {
+        choice: 'snickers'
+      },
+      response: ''
     }
   },
   methods: {
@@ -37,17 +49,31 @@ export default {
       }
     },
     toggleIsVotingEnabled() {
-      // todo why does toggling via inverse of self not work?
-      // eg. this.isVotingEnabled = !this.isVotingEnabled doesn't update state?
       if (this.votingOptions.length > 0) {
         this.isVotingEnabled = !this.isVotingEnabled
       }
-    }
+
+    },
+    connect() {
+      console.log(this.response);
+      this.connected = true;
+    },
+    disconnect() {
+      this.connected = false;
+    },
   },
   computed: {
     votingButtonVerb() {
       return !this.isVotingEnabled ? 'Start' : 'Stop'
     }
+  },
+  beforeMount() {
+    fetch('http://localhost:8000/api/socket/data')
+        .then(response => response.json())
+        .then(data => this.response = data.value);
+  },
+  mounted() {
+    console.log('snickers')
   }
 };
 </script>

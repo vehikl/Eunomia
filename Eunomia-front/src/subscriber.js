@@ -12,10 +12,6 @@ window.Echo = new Echo({
   wsPort: 6001,
 });
 
-console.log("tacos");
-
 window.Echo.private(`testchannel`).listen("BroadcastEvent", (e) => {
   console.log(e);
 });
-
-// window.Echo.channel

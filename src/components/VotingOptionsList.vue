@@ -5,16 +5,15 @@
     </button>
     <div>
       <input
-        id="textInput"
-        v-model="option"
-        placeholder="give new thing for ballot"
+          id="textInput"
+          v-model="option"
+          placeholder="give new thing for ballot"
       />
-      <button id="button" @click="buttonClick">Button</button>
+      <button id="button" @click="addOption">Add Option</button>
     </div>
     <div id="options" v-for="option of votingOptions">
-      <VotingOption :title="option" :enabled="isVotingEnabled" />
+      <VotingOption :title="option" :enabled="isVotingEnabled"/>
     </div>
-    <button @click="connect">Hey hi hello</button>
   </div>
 </template>
 
@@ -28,25 +27,15 @@ export default {
   },
   data() {
     return {
-      pusher: null,
-      app: null,
-      logChannel: null,
-      authEndpoint: null,
-      host: "127.0.0.1",
-      port: 6001,
       option: "",
       votingOptions: [],
       isVotingEnabled: false,
       connected: false,
-      votingPayload: {
-        choice: "snickers",
-      },
-      response: "",
     };
   },
   methods: {
-    buttonClick() {
-      if (this.option.length > 0 && this.option.length < 32) {
+    addOption() {
+      if (this.isValidVotingOption) {
         this.votingOptions.push(this.option);
         this.option = "";
       }
@@ -56,10 +45,6 @@ export default {
         this.isVotingEnabled = !this.isVotingEnabled;
       }
     },
-    connect() {
-      console.log(this.response);
-      this.connected = true;
-    },
     disconnect() {
       this.connected = false;
     },
@@ -68,14 +53,11 @@ export default {
     votingButtonVerb() {
       return !this.isVotingEnabled ? "Start" : "Stop";
     },
-  },
-  // beforeMount() {
-  //   fetch('http://localhost:8000/api/socket/data')
-  //       .then(response => response.json())
-  //       .then(data => this.response = data.value);
-  // },
-  mounted() {
-    console.log("snickers");
+    isValidVotingOption() {
+      return this.option.length > 0
+          && this.option.length < 32
+          && !this.votingOptions.includes(this.option)
+    },
   },
 };
 </script>

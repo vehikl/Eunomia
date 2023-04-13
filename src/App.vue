@@ -6,6 +6,6 @@
 </template>
 
 <script setup>
+import Snickers from "./components/Snickers.vue";
 import VotingOptionsList from "./components/VotingOptionsList.vue";
-import VotingOption from "./components/VotingOption.vue";
 </script>

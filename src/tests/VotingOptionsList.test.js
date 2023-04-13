@@ -47,4 +47,18 @@ describe('VotingOptionsList', () => {
 
         expect(textInput.element.value).toBe('')
     })
+
+    test.only('does not allow duplicate voting options', async () => {
+        const wrapper = mount(VotingOptionsList, {})
+        const button = wrapper.find('#button')
+        const textInput = wrapper.find('#textInput')
+
+        await textInput.setValue('snickers')
+        await button.trigger('click')
+
+        await textInput.setValue('snickers')
+        await button.trigger('click')
+
+        expect(wrapper.findAllComponents(VotingOption).length).toBe(1)
+    })
 })

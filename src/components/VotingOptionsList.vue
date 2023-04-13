@@ -1,15 +1,18 @@
 <template>
   <div>
-    <button id="votingToggleButton" @click="toggleIsVotingEnabled">{{ this.votingButtonVerb }} the voting!</button>
+    <button id="votingToggleButton" @click="toggleIsVotingEnabled">
+      {{ this.votingButtonVerb }} the voting!
+    </button>
     <div>
-      <input id="textInput" v-model="option" placeholder="give thing for ballot"/>
+      <input
+        id="textInput"
+        v-model="option"
+        placeholder="give new thing for ballot"
+      />
       <button id="button" @click="buttonClick">Button</button>
     </div>
     <div id="options" v-for="option of votingOptions">
-      <VotingOption
-          :title="option"
-          :enabled="isVotingEnabled"
-      />
+      <VotingOption :title="option" :enabled="isVotingEnabled" />
     </div>
     <button @click="connect">Hey hi hello</button>
   </div>
@@ -19,7 +22,7 @@
 import VotingOption from "./VotingOption.vue";
 
 export default {
-  name: 'VotingOptionsList',
+  name: "VotingOptionsList",
   components: {
     VotingOption,
   },
@@ -29,30 +32,29 @@ export default {
       app: null,
       logChannel: null,
       authEndpoint: null,
-      host: '127.0.0.1',
+      host: "127.0.0.1",
       port: 6001,
-      option: '',
+      option: "",
       votingOptions: [],
       isVotingEnabled: false,
       connected: false,
       votingPayload: {
-        choice: 'snickers'
+        choice: "snickers",
       },
-      response: ''
-    }
+      response: "",
+    };
   },
   methods: {
     buttonClick() {
       if (this.option.length > 0 && this.option.length < 32) {
-        this.votingOptions.push(this.option)
-        this.option = ''
+        this.votingOptions.push(this.option);
+        this.option = "";
       }
     },
     toggleIsVotingEnabled() {
       if (this.votingOptions.length > 0) {
-        this.isVotingEnabled = !this.isVotingEnabled
+        this.isVotingEnabled = !this.isVotingEnabled;
       }
-
     },
     connect() {
       console.log(this.response);
@@ -64,16 +66,16 @@ export default {
   },
   computed: {
     votingButtonVerb() {
-      return !this.isVotingEnabled ? 'Start' : 'Stop'
-    }
+      return !this.isVotingEnabled ? "Start" : "Stop";
+    },
   },
-  beforeMount() {
-    fetch('http://localhost:8000/api/socket/data')
-        .then(response => response.json())
-        .then(data => this.response = data.value);
-  },
+  // beforeMount() {
+  //   fetch('http://localhost:8000/api/socket/data')
+  //       .then(response => response.json())
+  //       .then(data => this.response = data.value);
+  // },
   mounted() {
-    console.log('snickers')
-  }
+    console.log("snickers");
+  },
 };
 </script>

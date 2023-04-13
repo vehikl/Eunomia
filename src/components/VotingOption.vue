@@ -2,11 +2,11 @@
   <div>
     <p>{{ title }}</p>
     <input
-        name="vote"
-        type="radio"
-        :id="this.titleForId + 'RadioButton'"
-        :disabled=!enabled
-    >
+      name="vote"
+      type="radio"
+      :id="this.titleForId + 'RadioButton'"
+      :disabled="!enabled"
+    />
   </div>
 </template>
 
@@ -14,20 +14,19 @@
 export default {
   name: "VotingOption",
   data() {
-    return {}
+    return {};
   },
   props: {
-    title: 'Title',
+    title: "Title",
     enabled: true,
   },
   methods: {},
   computed: {
     titleForId() {
-      return this.title.replaceAll(' ', '')
-    }
-  }
-}
+      return this.title.replaceAll(" ", "");
+    },
+  },
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

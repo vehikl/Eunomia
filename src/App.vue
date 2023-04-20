@@ -1,11 +1,9 @@
 <template>
   <div>
-    <h1>EUNOMIA</h1>
-    <VotingOptionsList />
+    <VotingSession />
   </div>
 </template>
 
 <script setup>
-import Snickers from "./components/Snickers.vue";
-import VotingOptionsList from "./components/VotingOptionsList.vue";
+import VotingSession from "./components/VotingSession.vue";
 </script>

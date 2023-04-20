@@ -25,15 +25,13 @@ export default {
     };
   },
   mounted() {
-    Pusher.logToConsole = true;
-
-    let pusher = new Pusher('dc8bfba00676c4552963', {
+    const pusher = new Pusher(  'dc8bfba00676c4552963', {
       cluster: 'us2'
     });
 
-    let channel = pusher.subscribe('my-channel');
+    const channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
-      this.messages.push(JSON.stringify(data));
+      console.log(JSON.stringify(data))
     });
   }
 }
